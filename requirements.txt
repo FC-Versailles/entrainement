@@ -8,3 +8,4 @@ google-auth-httplib2
 squarify
 os
 pickle
+streamlit
