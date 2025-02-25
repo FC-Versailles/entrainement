@@ -55,7 +55,12 @@ def fetch_google_sheet(spreadsheet_id, range_name):
 # Streamlit cache for loading data
 @st.cache_data(ttl=60)
 def load_data():
-    return fetch_google_sheet(SPREADSHEET_ID, RANGE_NAME)
+    data = fetch_google_sheet(SPREADSHEET_ID, RANGE_NAME)
+    data = data[~data['Type'].isin(['Salle', 'Dev Individuel'])]
+    return data
+
+# Effacer le cache si nécessaire
+st.cache_data.clear()
 
 # Streamlit App
 def main():
